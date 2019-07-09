@@ -1,2 +1,2 @@
-# FabioMariani.github.io
+# fabiomariani.github.io
 Personal Website
