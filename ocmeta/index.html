@@ -75,8 +75,13 @@
 			<ul class="timeline">
 				<li class="last">
 					<a href="">WEEK_1</a>
-					<b class="float-right">2019-07-08 to 2019-07-12</b>
-                    <p>Fusce ullamcorper ligula sit amet quam accumsan aliquet. Sed nulla odio, tincidunt vitae nunc vitae, mollis pharetra velit. Sed nec tempor nibh</p>
+                    <b class="float-right">2019-07-08 to 2019-07-12</b>
+                    <p>
+                    <ul>
+                        <li>First approach with graphlib library</li>
+                        <li>First code, Starting with Test Driven Development</li>
+                        <li>Obviously, first questions e doubts</li>
+                    </ul></p>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#w1repo">
                             Read Report
                     </button>                          
@@ -109,7 +114,7 @@
 
 
 <div class="modal fade" id="w1repo" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">Week_1 Report</h5>
@@ -118,7 +123,33 @@
               </button>
             </div>
             <div class="modal-body">
-              ...
+              <div>
+                  <h5><b>DONE</b></h5>
+                  <ul>
+                      <li><b>support.py FIX</b>
+                          <p> from urllib import quote had an error: unresolved reference.<br>
+                          The urllib module has been split into parts and renamed in Python 3 to  urllib.request, urllib.parse, and urllib.error. (https://docs.python.org/2/library/urllib.html)<br>
+                            FIX: from urllib.parse import quote</p>
+                      </li>
+                      <li><b>graphlib study</b><p>After a bit of struggling I manage to understand graphlib workflow (in particular linkings between GraphSet and GraphEntity classes). 
+                        I need some clarification on both classes' __init__ parameters (i.e. I understood that Graphset requires 3 strings, but actually I don't know what strings).</p>
+                    </li>
+                    <li><b>First Code (with TDD)</b>
+                        <p>Having troubles with graphlib I started to write a simple code to process and extract information needed from CSV ("class Migrator()").<br>
+                        Alongside, I created also the TDD file in order to test every function of Class Migrator.<br>
+                        Now I have some questions about what kind of data I will find (i.e. in demo CSV we have a publication with 2 ISSN: Can all entities have more than 1 identifiers for each type?)</p>
+                        </li>
+                  </ul>
+                <h5><b>TODO</b></h5>
+                <ol>
+                    <li><b>Little Porting</b><p>graphlib and ancillary libraries are in Python 2, some other fixing are required (in support.py def create_literal there's a requirement "basestring" that I can't understand)</p></li>
+                    <li><b>Logistics</b><p>Do we need a repository to put intermediary stuff? I.e. Can I push my first codes in OCMeta or is it better to create a new one?</p></li>
+                    <li><b>Complete step1</b><ul>
+                        <li>Once mastered graphlib, integrate it inside Migrator in order to complete conversions first step.</li>
+                        <li>Think about how to better manage Migrator class and its functions (i.e. processing csv inside or outside it?)</li>
+                    </ul></li>
+                  </ol>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
