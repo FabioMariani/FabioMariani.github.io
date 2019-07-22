@@ -73,7 +73,20 @@
 		<div class="col-md-6 offset-md-3">
 			<h4>Latest News</h4>
 			<ul class="timeline">
-				<li class="last">
+                    <li class="last">
+                            <a href="">WEEK_2</a>
+                            <b class="float-right">2019-07-15 to 2019-07-21</b>
+                            <p>
+                            <ul>
+                                <li>Graphlib library understood</li>
+                                <li>Refactor of Migrator</li>
+                                <li>Migrator upgrade with graphlib, first csv to rdf conversion</li>
+                            </ul></p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#w2repo">
+                                    Read Report
+                            </button>                          
+                        </li>
+				<li>
 					<a href="">WEEK_1</a>
                     <b class="float-right">2019-07-08 to 2019-07-12</b>
                     <p>
@@ -89,7 +102,7 @@
                 <li>
                     <a href="">POSTER SESSION</a>
                     <b class="float-right">2019-07-01</b>
-                    <p>OCMeta poster presenation at ISWS2019</p>
+                    <p>OCMeta poster presentation at ISWS2019</p>
                     <a href="img/ocmetaposter.pdf" target="_blank">
                     <button type="button" class="btn btn-primary">
                             PDF
@@ -157,6 +170,66 @@
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="w2repo" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Week_2 Report</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div>
+                      <h5><b>DONE</b></h5>
+                      <ul>
+                          <li><b><strike>Refactoring</strike> migrator</b>
+                              <p> Fixed regular expression's split spaces bug <br> Multiple same type IDs handling <br> Now It has a different output (so, <b>not a refactoring</b>...how to handle TDD?)</p>
+                          </li>
+                          <li><b>graphlib starts to work</b><p>Here we are! <br> </p>
+                        </li>
+                        <li><b>Migrator</b>
+                            <p>Migrator is gowing up. Now It converts a row into a rdf structure. Sadly I didn't get how to move with TDD here (when output is complex like an RDF)</p>
+                            </li>
+                      </ul>
+                    <h5><b>QUESTIONS</b></h5>
+                    <ol>
+                        <li><b>How to TDD</b><p>How to move with TDD now that I'm working with rdf files <br> When i change a script i have to keep old TDD file? </p></li>
+                        <li><b>RDF</b><ol>
+                            <li>I created different rdf files for every entity, unlike the example in The OpenCitations Data Model</li>
+                            <li>Can I use auto_compact=True? (json-ld prefixes)</li>
+                            <li>Why "Def create_pub_date()" requires a list of dates?</li>
+                            <li>The OpenCitations Data Model use a Contributors list, Should I?</li>
+                            <li>Do Bibliographic resources have a numeration order (journal, vol, issue...)?</li>
+                            <li>In graphlib I can't find reverse properties (obviously it's possible that I simply missed them!)
+                                So, I can query publication's authors from publication's rdf, but it would be hard to query author's publications form author's rdf.</li>
+                            <li>The OpenCitations Data Model handles first/last page inside a Resource embodiments, Should I?</li></ol>
+                        </ol>
+                        <h5><b>TODO</b></h5>
+                    <ol>
+                        <li><b>Improve identifiers handling</b>
+                            <p>Write more "if" cases for differet IDs <br>
+                            graphlib doesn't handle Crossref and Wikidata, add them (where?)
+                        </p>
+                        </li>
+                        <li><b>Handle Pages</b>
+                            <p>See"QUESTIONS 2.7
+                        </p>
+                        </li>
+                        <li><b>TDD</b>
+                            <p>In this week I left out TDD approach (since I didn't know how to proceed), I absolutely need to restart to use it.
+                        </p>
+                        </li>
+                      </ol>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
 </body>
 </html>
