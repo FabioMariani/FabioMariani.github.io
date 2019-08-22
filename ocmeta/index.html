@@ -74,13 +74,27 @@
 			<h4>Latest News</h4>
 			<ul class="timeline">
                     <li class="last">
+                            <a href="">WEEK_3</a>
+                            <b class="float-right">2019-08-19 to 2019-08-25</b>
+                            <p>
+                            <ul>
+                                <li>Created an example Graph (NTriple) to start the TDD of Official Migrator (csv to rdf converter)</li>
+                                <li>First Test:<b>FAILED</b></li>
+                                <li>Migrator implementation (everything to its job now)</li>
+                                <li>Second Test:<b>FAILED</b></li>
+                            </ul></p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#w3repo">
+                                    Read Report
+                            </button>                          
+                        </li>
+                    <li>
                             <a href="">WEEK_2</a>
                             <b class="float-right">2019-07-15 to 2019-07-21</b>
                             <p>
                             <ul>
                                 <li>Graphlib library understood</li>
-                                <li>Refactor of Migrator</li>
-                                <li>Migrator upgrade with graphlib, first csv to rdf conversion</li>
+                                <li>Refactor of Migrator(Beta)</li>
+                                <li>Migrator(Beta) upgrade with graphlib, first csv to rdf conversion</li>
                             </ul></p>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#w2repo">
                                     Read Report
@@ -230,6 +244,56 @@
               </div>
             </div>
           </div>
+
+
+          <div class="modal fade" id="w3repo" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Week_3 Report</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                          <h5><b>DONE</b></h5>
+                          <ul>
+                                <li><b>Graphlib</b>
+                                    <p>Creation of new functions to handle (crossref, viaf, wikidata)</p>
+                                </li>
+                              <li><b>example_graph.ttl</b>
+                                  <p>This is the TDD expected result, an handmade Turtle serialized rdf (<a href="https://github.com/opencitations/meta/blob/master/tdd/example_graph.ttl">Github</a>)</p>
+                              </li>
+                              <li><b>TDD</b>
+                                <p>Using the <b>example_graph.ttl</b> as expected results the test function compare new graph with it. Graph comparisson is made extracting all graphs' triples as tuples and putting them inside two different sets (once for graph). Sets are easy to compare once created.</p>
+                                </li>
+                              <li><b>Migrator (the true Migrator) </b><p>After some playground before holidays I have developed (using the right TDD approach) a complete version of Migrator as intended. It simply needs to initialize the class with a processed CSV (dictionary) to do all the job automatically. Data processing and graph serialization are external.</p>
+                            </li>
+                          </ul>
+                        <h5><b>QUESTIONS</b></h5>
+                        <ol>
+                            <li><b>example_graph</b><p>The entity AR (RoleInTime) has to be created, for example, everytime an agent has author role (has i did), or only once?</p></li>
+                            <li class="bg-warning"><b>Author more than one time</b> Test is failing because authors entities are created everytime they appear inside csv, obviously creating a new RA will add +1 in RA counter, this mean 2 differents entity (different URI) for the same person</li>
+                            </ol>
+                            <h5><b>TODO</b></h5>
+                        <ol>
+                            <li><b>Corssref and Wikidata</b>
+                                <p>Add those 2 new IDs to Datacite</p>
+                            </li>
+                            <li><b>Add MetaID</b>
+                                <p>It's missing also inside example_graph.ttl</p>
+                            </li>
+                            <li><b>GREEN</b>
+                                <p>Reach GREEN step in TDD and then refactor</p>
+                            </li>
+                          </ol>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 </body>
 </html>
