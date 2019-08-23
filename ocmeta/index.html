@@ -259,7 +259,7 @@
                           <h5><b>DONE</b></h5>
                           <ul>
                                 <li><b>Graphlib</b>
-                                    <p>Creation of new functions to handle (crossref, viaf, wikidata)</p>
+                                    <p>Creation of new functions to handle crossref, viaf, and wikidata</p>
                                 </li>
                               <li><b>example_graph.ttl</b>
                                   <p>This is the TDD expected result, an handmade Turtle serialized rdf (<a href="https://github.com/opencitations/meta/blob/master/tdd/example_graph.ttl">Github</a>)</p>
@@ -272,12 +272,12 @@
                           </ul>
                         <h5><b>QUESTIONS</b></h5>
                         <ol>
-                            <li><b>example_graph</b><p>The entity AR (RoleInTime) has to be created, for example, everytime an agent has author role (has i did), or only once?</p></li>
+                            <li><b>example_graph</b><p>The entity AR (RoleInTime) of one agent (i.e. author role) has to be created everytime this agent has author role (has i did), or only once?</p></li>
                             <li class="bg-warning"><b>Author more than one time</b> Test is failing because authors entities are created everytime they appear inside csv, obviously creating a new RA will add +1 in RA counter, this mean 2 differents entity (different URI) for the same person</li>
                             </ol>
                             <h5><b>TODO</b></h5>
                         <ol>
-                            <li><b>Corssref and Wikidata</b>
+                            <li><b>Crossref and Wikidata</b>
                                 <p>Add those 2 new IDs to Datacite</p>
                             </li>
                             <li><b>Add MetaID</b>
