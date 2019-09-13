@@ -74,6 +74,19 @@
 			<h4>Latest News</h4>
 			<ul class="timeline">
                     <li class="last">
+                            <a href="">WEEK_4</a>
+                            <b class="float-right">2019-09-09 to 2019-09-13</b>
+                            <p>
+                            <ul>
+                                <li>Migrator Upgrade</li>
+                                <li>Graphlib Upgrade</li>
+                                <li>TDD:<b>FAILED</b></li>
+                            </ul></p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#w4repo">
+                                    Read Report
+                            </button>                          
+                        </li>
+                    <li>
                             <a href="">WEEK_3</a>
                             <b class="float-right">2019-08-19 to 2019-08-25</b>
                             <p>
@@ -287,6 +300,59 @@
                                 <p>Reach GREEN step in TDD and then refactor</p>
                             </li>
                           </ol>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="modal fade" id="w4repo" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Week_4 Report</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div>
+                          <h5><b>DONE</b></h5>
+                          <ul>
+                              <li><b>Added "meta" and "meta_id" to CSV</b>
+                                  <p> meta_id is an id for Ids. NO meta for RE and AR</p>
+                              </li>
+                              <li><b>ADD has_next to authors' role</b>
+                                <p>Now authors in a BR have an order</p>
+                            </li>
+                            <li><b>Graphlib Upgrade</b>
+                                <p> 
+                                        line 478: even if there's an existing res It is necessary to specify "main tipe".
+                                        <pre><code>return self._generate_entity(cur_g, res=res, res_type=main_type, resp_agent=resp_agent, source_agent=source_agent, source=source, list_of_entities=list_of_entities)</code></pre>
+                                    
+                                        line 127: existing_ref = False<br>
+                                        This boolean prevent to generate entity main type (ex. fabio:expression) and label. <b>It was removed</b>
+                                </p>
+                            </li>
+                            <li><b>converter.py</b>
+                                <p>An auxiliary/temporary algorithm to help the testcase creation, from its ashes the CSV_Enrichener algorithm will arise (same as for its TDD)</p>
+                            </li>
+                          </ul>
+                        <h5><b>TODO/Questions</b></h5>
+                        <ol>
+                            <li><b>NEW TDD</b><p>RDF documents are getting complex so to test them I need smaller part...Actually I can't with RDF<br>
+                            One solution: create "meta" for everything (ar and re too) in order to be free from counter in migrator</p></li>
+                            <li><b>ID list</b><p>need a list of every Ids that Migrator can handle </p></li>
+                            <li><b>TYPE list</b><p>need a list of every types that Migrator can handle </p></li>
+                            <li><b>Not clear:</b><p>Is it possible to have "volume" and/or "issue" without "venue"</p></li>
+                            <li><b>NO IDs CASE:</b><p>i.e. Is it possible to have an author (or publisher, or venue...) without ids?</p></li>
+                            <li><b>RDFLIB BUG:</b><p> <a href="https://github.com/RDFLib/rdflib/issues/806" terget="_blank">ISSUE</a> (Essepuntato was here!)</p></li>
+                          </ol>
+                      </div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
