@@ -341,14 +341,22 @@
                             <li><b>converter.py</b>
                                 <p>An auxiliary/temporary algorithm to help the testcase creation, from its ashes the CSV_Enrichener algorithm will arise (same as for its TDD)</p>
                             </li>
+                            <li><b>New TestCases</b>
+                                <p>Added new tests related to the structure venue-volume-issue:</p>
+                                <ul>
+                                    <li><b>testcase1:</b> 2 different issues of the same venue (no volume)</li>
+                                    <li><b>testcase2:</b> 2 different volumes of the same venue (no issue)</li>
+                                    <li><b>testcase3:</b> 2 different issues of the same volume</li>
+                                </ul>
+                            </li>
                           </ul>
-                        <h5><b>TODO/Questions</b></h5>
+                        <h5><b>Questions</b></h5>
                         <ol>
-                            <li><b>NEW TDD</b><p>RDF documents are getting complex so to test them I need smaller part...Actually I can't with RDF<br>
-                            One solution: create "meta" for everything (ar and re too) in order to be free from counter in migrator</p></li>
                             <li><b>ID list</b><p>need a list of every Ids that Migrator can handle </p></li>
                             <li><b>TYPE list</b><p>need a list of every types that Migrator can handle </p></li>
-                            <li><b>Not clear:</b><p>Is it possible to have "volume" and/or "issue" without "venue"</p></li>
+                            <li><b>Not clear:</b><p>Is it possible to have "volume" and/or "issue" without "venue"?</p></li>
+                            <li><b>Venue</b> <p>Graphlib doesn't provide a venue-type for venues, is it ok?</p></li>
+                            <li><b>AR & RE</b> <p>They are unique, so I actually don't need to asign them in csv, they are created by graphlib as well...Is it right?</p></li>
                             <li><b>NO IDs CASE:</b><p>i.e. Is it possible to have an author (or publisher, or venue...) without ids?</p></li>
                             <li><b>RDFLIB BUG:</b><p> <a href="https://github.com/RDFLib/rdflib/issues/806" terget="_blank">ISSUE</a> (Essepuntato was here!)</p></li>
                           </ol>
