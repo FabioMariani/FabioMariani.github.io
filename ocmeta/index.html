@@ -74,6 +74,21 @@
 			<h4>Latest News</h4>
 			<ul class="timeline">
                     <li class="last">
+                            <a href="">WEEK_5</a>
+                            <b class="float-right">2019-09-16 to 2019-09-20</b>
+                            <p>
+                            <ul>
+                                <li>Migrator Upgrade</li>
+                                <li>Graphlib FIX</li>
+                                <li>ID Index system</li>
+                                <li>New Testcases</li>
+                                <li>TDD:<b>SUCCESS!</b></li>
+                            </ul></p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#w5repo">
+                                    Read Report
+                            </button>                          
+                        </li>
+                    <li>
                             <a href="">WEEK_4</a>
                             <b class="float-right">2019-09-09 to 2019-09-13</b>
                             <p>
@@ -369,6 +384,64 @@
                   </div>
                 </div>
               </div>
+
+
+
+
+
+              <div class="modal fade" id="w5repo" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Week_5 Report</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div>
+                              <h5><b>DONE</b></h5>
+                              <ul>
+                                  <li><b>ID Index System</b>
+                                      <p>IDs are now indexed in a txt file read by migrator in order to create ID's Meta number</p>
+                                  </li>
+                                  <li><b>Graphlib FIX</b>
+                                    <p>In creating entity added 2 nex boolean parameters: wanted_type (if you want generate type even if it's an existing res) and wanted_label (if you don't want to create rdfs:label even if it's a new entity)</p>
+                                </li>
+                                <li><b>Migrator Upgrade</b>
+                                    <ul>
+                                        <li>New IDs: added all IDs that Graphlib can handle</li>
+                                        <li>New TYPEs: added all TYPEs that Graphlib can handle, <b>missing "Archival document"</b></li>
+                                        <li>New date formats: improved to handle new formats: yyyy-mm-dd and yyyy-mm</li>
+                                    </ul>
+                                </li>
+                                <li><b>TDD</b>
+                                    <ul>
+                                        <li>Date bug FIXED: <a href="https://github.com/opencitations/script/blob/master/ocdm/storer.py" target"_blank">https://github.com/opencitations/script/blob/master/ocdm/storer.py</a> </li>
+                                        <li>New way to compare graphs: rdflib.compare.isomorphic</li>
+                                        <li>Added new testcases to test new improvement:</li>
+                                        <ul>
+                                            <li><b>testcase4:</b> new IDS and different date format (yyyy-mm and yyyy-mm-dd)</li>
+                                            <li><b>testcase5:</b>NO ID scenario</li>
+                                            <li><b>testcase6:</b>ALL types test (huge test)</li>
+                                        </ul>
+                                    </ul>
+                                </li>
+                              </ul>
+                            <h5><b>Questions</b></h5>
+                            <ol>
+                                <li><b>VOLUME</b><p> How to disambiguate a Volume without Venue</p></li>
+                                <li><b>Volume and Issue TYPES</b><p>A volume or Issue can be only a journal volume/issue? (i.e. graphlib.create_issue())</p></li>
+                                <li><b>Archival document</b><p>TODO</p></li>
+                              </ol>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
 </body>
 </html>
