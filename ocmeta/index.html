@@ -74,6 +74,22 @@
 			<h4>Latest News</h4>
 			<ul class="timeline">
                     <li class="last">
+                            <a href="">WEEK_6</a>
+                            <b class="float-right">2019-09-23 to 2019-09-27</b>
+                            <p>
+                            <ul>
+                                <li>New ID Index</li>
+                                <li>"Archival Document" to Graphlib</li>
+                                <li>ADDED "Editor" metadatum</li>
+                                <li>Migrator handles Venue, Volume and Issue depending on BR's Type</li>
+                                <li>New Testcases</li>
+                                <li>TDD:<b>SUCCESS!</b></li>
+                            </ul></p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#w6repo">
+                                    Read Report
+                            </button>                          
+                        </li>
+                    <li>
                             <a href="">WEEK_5</a>
                             <b class="float-right">2019-09-16 to 2019-09-20</b>
                             <p>
@@ -443,5 +459,81 @@
                     </div>
                   </div>
 
+
+                  
+              <div class="modal fade" id="w6repo" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Week_6 Report</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div>
+                              <h5><b>DONE</b></h5>
+                              <ul>
+                                  <li><b>2 ID Indices</b>
+                                      <p>RA-IDs and BR-IDs are now indexed in separated csv files read by migrator in order to create ID's Meta number</p>
+                                  </li>
+                                  <li><b>"Archival Document" added to Graphlib</b>
+                                    <p>Function to create an Archival Document Entity and also an Archival Document Set</p>
+                                </li>
+                                <li><b>Added "Editor" metadatum</b>
+                                    <p>Editors works like Authors (obviously with different roles), they have a sequence like Authors, BUT:</p>
+                                    <pre>
+                                        <code>
+    if self.type == "journal article" and self.issue_graph:
+    pub_ed_role.create_editor(self.issue_graph)
+elif self.type == "journal article" and not self.issue and self.vol_graph:
+    pub_ed_role.create_editor(self.vol_graph)
+elif self.type == "journal issue" and self.vol_graph:
+    pub_ed_role.create_editor(self.vol_graph)
+elif (self.type == "book chapter" or self.type == "book part" or self.type == "book section") and self.venue_graph:
+    pub_ed_role.create_editor(self.venue_graph)
+else:
+    pub_ed_role.create_editor(self.br_graph)
+                                        </code>
+                                    </pre>
+                                </li>
+                                <li><b>VVI (Venue, Volume, Issue)</b>
+                                    <p>Volume and Issue are handled only for Journal Domain. Venue type is created depending on BR's Type (following FABIO Ontology)</p>
+                                    <pre>
+                                            <code>
+if self.type == "journal article" or self.type == "journal volume" or self.type == "journal issue":
+    venue_graph.create_journal()
+elif self.type == "book chapter" or self.type == "book part" or self.type == "book section":
+    venue_graph.create_book()
+elif self.type == "proceedings article":
+    venue_graph.create_proceedings()
+                                    </code>
+                                </pre>              
+                                </li>
+
+
+                                <li><b>New Testcases</b>
+                                    <ul>
+                                            <li><b>testcase7:</b> archival document in an archival document set</li>
+                                            <li><b>testcase8:</b>all journal related types with an editor</li>
+                                            <li><b>testcase9:</b>all book related types with an editor</li>
+                                            <li><b>testcase10:</b>all proceeding related types with an editor</li>
+                                    </ul>
+                                </li>
+                              </ul>
+                            <h5><b>Questions</b></h5>
+                            <ol>
+                                <li><b>URL</b><p> I handle it as an ID, right?</p></li>
+                                <li><b>Particular BR</b><p> "book series", "book track", "book set", what about Venue and Editor in this situation? How to distinguish between a Book from book series or book set? (I think NO)</p></li>
+                                <li><b>Type's string</b><p>Are them ok?</p></li>
+                              </ol>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 </body>
 </html>
