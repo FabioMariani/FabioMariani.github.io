@@ -74,6 +74,21 @@
 			<h4>Latest News</h4>
 			<ul class="timeline">
                     <li class="last">
+                            <a href="">WEEK_7</a>
+                            <b class="float-right">2019-09-30 to 2019-10-04</b>
+                            <p>
+                            <ul>
+                                <li>Conceptual Revolution: IDs separated by spaces instead of ";"</li>
+                                <li>Converter Birth</li>
+                                <li>Converted TDD: FAIL (due to ";" revolution)</li>
+                                <li>Migrator minor changes + new testcase</li>
+                                <li>Migrator TDD: SUCCESS (but IDs are separated by ";")</li>
+                            </ul></p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#w7repo">
+                                    Read Report
+                            </button>                          
+                        </li>
+                    <li>
                             <a href="">WEEK_6</a>
                             <b class="float-right">2019-09-23 to 2019-09-27</b>
                             <p>
@@ -535,5 +550,91 @@ elif self.type == "proceedings article":
                       </div>
                     </div>
                   </div>
+
+
+
+
+
+
+<li>Converter Birth</li>
+<li>Converted TDD: FAIL (due to ";" revolution)</li>
+<li>Migrator minor changes + new testcase</li>
+<li>Migrator TDD: SUCCESS (but IDs are separated by ";")</li>
+
+                  <div class="modal fade" id="w7repo" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-lg" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Week_7 Report</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div>
+                                  <h5><b>DONE</b></h5>
+                                  <ul>
+                                      <li><b>IDs separated by spaces instead of ";"</b>
+                                          <p>Are We sure? Shall I procede?</p>
+                                      </li>
+                                    <li><b>Migrator minor changes</b>
+                                        <ul>
+                                            <li>NO archival set</li>
+                                            <li>URL is available only for BR</li>
+                                            <li>If Type == "Journal Issue" the Editor is related to the Issue itslef</li>
+                                        </ul>
+                                    </li>
+                                    <li><b>Migrator TDD</b>
+                                        <ul>
+                                            <li><b>testcase11:</b> a book inside a book series and a book inside a book set</li>
+                                        </ul>
+                                    </li>
+                                    <li><b>Converter</b>
+                                        <p>Class to clean csv:</p>
+                                        <ul>
+                                            <li><b>clean_id(self)</b>
+                                                <p>remove spaces between main BR's IDs and between ":", it returns a space-separated IDs list + MetaID 
+                                                    <br>
+                                                    It handles the situation when a BR already exists in the csv, giving it the same meta ID.
+                                                </p>
+                        
+                                            </li>
+                                            <li><b>clean_ra(self)</b>
+                                                <p>remove spaces around ra name (or around name and surname separated by "," if ra is an author/editor) and it removes spaces between ra's IDs and between their ":", it returns "name, surname" (or Publisher's name) plus, between square brakets, a space-separated IDs list + MetaID
+                                                <br>
+                                                It handles the situation when an RA already exists in the csv, giving it the same meta ID.</p>
+                                            </li>
+                                            <li><b>clean_vvi(self)</b>
+                                                <p>remove spaces around venue,volume or issue's br-name and it removes spaces between venue's IDs and between their ":", it returns "br-name" plus, between square brakets, a space-separated IDs list (in case of Venue) + MetaID.
+                                                <br>
+                                                It handles the situation when a BR already exists in the csv, giving it the same meta ID.
+                                                <br>
+                                                It also takes in consideration the relationship between Venue-Volume-Id in order to give the correct ID (i.e. same Volume of a Venue)
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><b>Converter TDD</b>
+                                        <p>Actually the same Testcases of Migrator TDD (simply testing another step)</p>
+                                        <p>Test fails because of testcases still have ";" separation</p>
+                                    </li>
+                                  </ul>
+                                <h5><b>TODO</b></h5>
+                                <ol>
+                                    <li><b>Remove ";"</b><p>If we are sure I can procede</p></li>
+                                    <li><b>New Converter TDD run</b><p>Check if it works as aspected</p></li>
+                                    <li><b>Converter TDD for Graph</b><p>It has to check also if an entity already exists in the whole Graph (conceptual skeleton ready, missing sparql query step)</p></li>
+                                    <li><b>Red Line Test</b><p>Test if Converter can manage every kind of typos available (<b>TBD what kind of typos</b>)</p></li>
+                                </ol>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
 </body>
 </html>
