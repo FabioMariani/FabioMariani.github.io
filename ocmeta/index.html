@@ -74,6 +74,21 @@
 			<h4>Latest News</h4>
 			<ul class="timeline">
                     <li class="last">
+                            <a href="">WEEK_8</a>
+                            <b class="float-right">2019-09-07 to 2019-10-11</b>
+                            <p>
+                            <ul>
+                                <li>Conceptual Revolution: IDs separated by spaces instead of ";"</li>
+                                <li>Converter Birth</li>
+                                <li>Converted TDD: FAIL (due to ";" revolution)</li>
+                                <li>Migrator minor changes + new testcase</li>
+                                <li>Migrator TDD: SUCCESS (but IDs are separated by ";")</li>
+                            </ul></p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#w8repo">
+                                    Read Report
+                            </button>                          
+                        </li>
+                    <li>
                             <a href="">WEEK_7</a>
                             <b class="float-right">2019-09-30 to 2019-10-04</b>
                             <p>
@@ -628,5 +643,90 @@ elif self.type == "proceedings article":
                       </div>
 
 
+
+
+
+                      <div class="modal fade" id="w8repo" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLongTitle">Week_8 Report</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div>
+                                      <h5><b>DONE</b></h5>
+                                      <ul>
+                                        <li><b>Converter</b>
+                                            <ul>
+                                                <li><b>finder.py</b>
+                                                    <p>Ancillary script to execute complex SPARQL query on a triplestore
+                                                        <br>
+                                                        Since I had to write from scratch all functions i prefered to create a new script istead of working on resfinder.py 
+                                                        <br>
+                                                        finder.py works with pymantic library to handle SPARQL queries, and it is based mainly on 3 functions:
+                                                    </p>
+                                                    <ul>
+                                                        <li><b>retrieve_br_from_id</b> <p>Given an ID retrieve the BR, his Title and all his IDs</p></li>
+                                                        <li><b>retrieve_publisher_from_id and retrieve_autor_editor_from_id</b> <p>Given an ID retrieve the RA, his Name (name and surname if person) and all his IDs</p></li>
+                                                        <li><b>retrieve_venue_from_id and retrieve_vvi_part_from_id</b> <p>Given an ID retrieve the Venue, his title and all his IDs, and then in a recursive way (if available) all the volumes, issues and also issues inside volume</p></li>
+
+                                                    </ul>
+                            
+                                                </li>
+                                                <li><b>Real Time Csv Entities Update</b>
+                                                    <p>Storing all the info about entities and thanks to a csv's lines counter Converter can update any entity when a new ID is found. It is important to notice that a BR can be inside "ID" or inside "VENUE"</p>
+                                                </li>
+                                                <li><b>clean_title and clean_name</b>
+                                                    <p>Usually a BR title or RA name is taken from Triplestore or Local memory (dictionary) when available. But, when we find a new name/title a script cleans it</p>
+                                                    <ul>
+                                                        <li><b>Name:</b> strip by "," (only for people: authors, editors) and then strip by whitespaces (one or more, in order to handle multiple names) then capitalize every word (first letter upper, the rest lower). Finally join with a single whitespace.</li>
+                                                        <li><b>Title:</b> strip by whitespaces (one or more) then for every word, if there's an uppercase character pass, else capitalize (first letter upper, the rest lower). Finally join with a single whitespace.</li>
+                                                    </ul>
+                                                    
+                                                </li>
+                                                <li><b>Counter</b>
+                                                    <p>Now Converter's counter works exactly as Graphlib (same code, how to give author's attribution inside code?)</p>
+                                                </li>
+                                                <li>
+                                                    <b>Ready to work</b>
+                                                    <p>Script to generate Id's Indices CSV, it's commented waiting for the final implementation</p>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Converter TDD</b>
+                                            <p>Still GREEN</p>
+                                        </li>
+                                        <li><b>Minor CHanges</b>
+                                            <p>Testcase07 deprecated, now the new Testcase07 is the old Testcase08 and so on</p>
+                                        </li>
+                                      </ul>
+                                    <h5><b>TODO</b></h5>
+                                    <ol>
+                                        <li><b>TEST</b></li>
+                                        <li><b>TEST</b></li>
+                                        <li><b>TEST</b></li>
+                                    </ol>
+                                    <h5><b>Questions...because real world is hard</b></h5>
+                                    <ol>
+                                        <li>Is it possible to find an author name without comma? i.e. Mariani Fabio (instead of Mariani, Fabio)</li>
+                                        <li>Is it possible to find an id abbreviation with strange uppercase characters? i.e. Doi:1001 or dOi:1001 or DOi:1001</li>
+                                        <li>Is it possible to find an id abbreviation with strange uppercase characters? i.e. Doi:1001 or dOi:1001 or DOi:1001</li>
+                                        <li>if a row (a BR) hasn't a TYPE, but we know through is venue that is part of a journal issue, shall we say that's a journal article? (in this case we have problem with part of venue/volume because we can't distinguish)</li>
+                                        <li>Is it possible to find brackets inside titles? (this would be a problem when "uppercasing" words)</li>
+                                        <li>Is it possible to find <b>a META inside a raw csv</b>? i.e. meta:br/1</li>
+                                        <li>Just to be sure...How does "issue range" (i.e. issue:"1-2") works? Is it a range right?</li>
+                                        <li>An editor can be an author sometimes?</li>
+                                    </ol>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
 </body>
 </html>
