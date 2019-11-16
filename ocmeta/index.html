@@ -73,6 +73,19 @@
 		<div class="col-md-6 offset-md-3">
 			<h4>Latest News</h4>
 			<ul class="timeline">
+                    <li>
+                            <a href="">WEEK_13</a>
+                            <b class="float-right">2019-11-11 to 2019-11-16</b>
+                            <p>
+                            <ul>
+                                <li>Crossref conversion class</li>
+                                <li>New crossref data test</li>
+                                <li>Some perplexity</li>
+                            </ul></p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#w13repo">
+                                    Read Report
+                            </button>                          
+                        </li>
                     <li class="last">
                             <a href="">WEEK_12</a>
                             <b class="float-right">2019-11-04 to 2019-11-08</b>
@@ -904,6 +917,59 @@ elif self.type == "proceedings article":
                                       </div>
                                     </div>
                                   </div>
+
+
+
+
+                                  <div class="modal fade" id="w13repo" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLongTitle">Week_13 Report</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <div>
+                                                  <h5><b>DONE</b></h5>
+                                                  <ul>
+                                                      <li>crossrefBeautify Class: A class to convert crossref json to csv acording to keys</li>
+                                                      <li>Playground with some json datasets thanks to <a href="https://ivanhb.github.io/opencitations/activity/issi2019(roma)/A%20tutorial%20for%20OpenCitations%20and%20Crossref%20API.pdf">Mr. Heibi Documentation</a>
+                                                            <ul>
+                                                                <li><a href="https://api.crossref.org/works?filter=from-index-date:2019"><b>https://api.crossref.org/works?filter=from-index-date:2019</b></a></li>
+                                                                <li><a href="https://api.crossref.org/works?query.author=richard+feynman"><b>https://api.crossref.org/works?query.author=richard+feynman</b></a></li>
+                                                                <li><a href="https://api.crossref.org/works?query.author=michel+dumontier"><b>https://api.crossref.org/works?query.author=michele+dumontier</b></a></li>
+                                                            </ul>
+                                                            <li>Considerations:</li>
+                                                            <ul>
+                                                                <li>Latin1 chars (french words) and gliphs (chemistry) (I had some troubles here, but fixed)</li>
+                                                                <li>A date is written as "None"</li>
+                                                                <li>A journal article has "October 1999" as title</li>
+                                                                <li>In 20 Michel Dumontier appearances 19 different entities called "Michel Dumontier" are generated (only 2 out of 20 have an Orcid)</li>
+                                                                <li>Richard Feynman tribute for its own sake.</li>
+                                                            </ul>
+                                                    </li>
+                                                      <li></li>
+                                                  </ul>
+                                                <h5><b>TODO</b></h5>
+                                                <ol>
+                                                    <li><b>Graphlib upgrades (provenance and storer)</b></li>
+                                                    <li><b>From URL to ID (in crossrefBeautify, i.e. orcid)</b></li>
+                                                </ol>
+                                                <h5><b>Questions...because real world is hard</b></h5>
+                                                <ol>
+                                                    <li>Crossref data are really poor of ids, actually there are gone to be a huge quantity of authors duplicates. I'm worried about data quality</li>
+                                                </ol>
+                                              </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+    
 
 </body>
 </html>
