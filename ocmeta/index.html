@@ -74,6 +74,19 @@
 			<h4>Latest News</h4>
 			<ul class="timeline">
                     <li class="last">
+                            <a href="">WEEK_16</a>
+                            <b class="float-right">2019-12-02 to 2019-12-07</b>
+                            <p>
+                            <ul>
+                                <li>Minor fix in index_orcid_doi</li>
+                                <li>Storer</li>
+                                <li>Start merging Fabio's Graphlib with Marilena's Graphlib</li>
+                            </ul></p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#w16repo">
+                                    Read Report
+                            </button>                          
+                        </li>
+                    <li>
                             <a href="">WEEK_15</a>
                             <b class="float-right">2019-11-25 to 2019-11-30</b>
                             <p>
@@ -1065,5 +1078,42 @@ elif self.type == "proceedings article":
                                               </div>
                                             </div>
                                           </div>
+                                          <div class="modal fade" id="w16repo" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalLongTitle">Week_16 Report</h5>
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                      <div>
+                                                          <h5><b>DONE</b></h5>
+                                                          <ul>
+                                                                <li>Minor fix in index_orcid_doi</li>
+                                                                <li>Storer</li>
+                                                                <li>Start merging Fabio's Graphlib with Marilena's Graphlib</li>
+                                                           <li><b>index_orcid_doi</b> Now CSVManager works properly</li>
+                                                           <li><b>Storer</b> Added cases to handle nttiples data, can we check together?</li>
+                                                           <li><b>Graphlib (notes both for Silvio and Marilena)</b> Marilena gave me her first version, apart from some minor additions our versions differ in 2 points:</li>
+                                                            <ul>
+                                                                <li><b>Label</b> I used a boolean parameter to prevent Label creation, Marilena at the moment has disabled them. </li>
+                                                                <li><b>Type</b> I'm creating new entities giving a res as parameter (meta ID). For Graphlib this means creating an "existing_res" (no type generation) so I need a boolean parameter to force type generation</li>
+                                                            </ul>
+                                                          </ul>
+                                                        <h5><b>TODO</b></h5>
+                                                        <ol>
+                                                            <li><b>Complete Graphlib</b></li>
+                                                        </ol>
+    
+                                                      </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
 </body>
 </html>
