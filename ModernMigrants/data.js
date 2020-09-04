@@ -102,6 +102,68 @@ var data = [
     },
 
     {
+        "title":"WEEK 3",
+        "period":["31-08-2020","04-09-2020"],
+        "highlights":
+                    [
+                        "Failure of the fully automated approach.",
+                        "New Proposals.",
+                        "Demo of the most ambitious proposal."
+                    ],
+        "achievements":[
+            {
+                "title":"Failure of the fully automated approach.",
+                "text":"The fully automatic approach, using the Spacy library, did not give acceptable results. The point is that Spacy's NER is trained on very generic corpus.\
+                For this reason the proposed NLP model doesn't fit at all the peculiarity of the provenance texts. All that remains is to explore new possibilities."
+            },
+            {
+                "title":"Ambitious Idea: Machine Learning approach",
+                "text":"Since Spicy's NER is not able to give hoped-for results because of its training corpus I thought we could create a new NER model through machine learning on a noted corpus dedicated exclusively to provenance.\
+                <p>This idea was even hypothesized by the authors of Art Tracks:<\p>\
+                    \"Our first attempts to extract the semantic content within the provenance text were done using existing Natural Language Processing (NLP) software, specifically the Stanford Natural Language Toolkit (Manning, 2014). This software allows for entity extraction and the automated tagging of text. However, our experiments show they are not currently designed to work well with cultural heritage data: they require training on data sets, and most of the training to date has been done using vernacular data sets like the New York Times. The extremely terse syntax of provenance records, as well as the historic and somewhat unusual names that appear throughout provenance, means that the existing training corpuses are insufficient to accurately tag and parse provenance records. There is room for additional research in this area, and once a sufficient volume of tagged data exists it should be possible for researchers to create a cultural heritage corpus for use in training and automated extraction. At the current time, however, automated NLP solutions were deemed inadequate for the project.\" \
+                    <p><small>\"Art Tracks: Visualizing the stories and lifespan of an artwork.\" MW2015: Museums and the Web 2015. Published January 15, 2015. Consulted September 4, 2020.\
+                https://mw2015.museumsandtheweb.com/paper/art-tracks-visualizing-the-stories-and-lifespan-of-an-artwork/</small></p>\
+                    "
+            },
+            {
+                "title":"Provenance NER DEMO",
+                "text":"So I tried to do some small tests to see if the idea could be successful.\
+                First of all I created an online annotation platform using the Open Source project <a href='https://github.com/doccano/doccano' target='_blank'>Doccano</a>, \
+                visit here: <a href='https://modern-migrants-tag.herokuapp.com/projects' target='_blank'>https://modern-migrants-tag.herokuapp.com</a>.\
+                <p> The platform is interesting because it supports multiple users and therefore allows collaborative annotation work. There would also be the <a href='https://prodi.gy/' target='_blank'>Prodigy</a> platform,\
+                 for a fee, very similar but supporting automatic learning (the \"machine\" learns at the same time as the annotation). Prodigy is by the same authors as Spicy.\
+                Not having access to Prodigy, once I tagged a small portion of corpus with Doccano, I trained a machine on my own (Doccano has no built-in machine learning). \
+                The results, available <a href='https://github.com/ModernMigrants/PreliminaryData/blob/master/NGA/NER/demo_data.txt' target='_blank'>here<\a>, are not perfect (being a tiny corpus) but they are encouraging.\
+                </p>"
+            }
+        ],
+        "brainstorming":[
+            {
+                "title":"What kind of annotation?",
+                "text":"Excluding the possibility to extract information automatically in the current state of the art, there are two possibilities.\
+                <ul>\
+                <li>\
+                A manual annotation with Prodigy or Doccano that could give us the opportunity to also propose an AI trained with our data that extracts Provenance data.\
+                </li>\
+                <li>\
+                A manual transcription in a form very similar to what was done with Elysa Tool that would give us the opportunity to reinterpret the data.\
+                </li>\
+                </ul>\
+                "
+            }
+        ],
+        "future":[
+            {
+                "title":"Analyze options and discuss them",
+                "text":"It will be necessary to take into consideration the implications that this decision may have on\
+                 the development of the project (including timing) before continuing and laying the technical and methodological foundations on which to work."
+            }
+        ]
+    },
+
+
+    
+    {
         "title":"",
         "period":["",""],
         "highlights":
