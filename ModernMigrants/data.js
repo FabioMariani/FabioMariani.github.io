@@ -164,6 +164,44 @@ var data = [
 
     
     {
+        "title":"WEEK 4",
+        "period":["07-09-2020","11-09-2020"],
+        "highlights":
+                    [
+                        "Begin of the development of the platform to process provenance data."
+                    ],
+        "achievements":[
+            {
+                "title":"Provenance Data Platform",
+                "text":"<p>Following the brainstorming at the beginning of the week, in which the hypothesis of using an AI was rejected, the entire weekly work was dedicated to the realization of the online platform.</p>\
+                <p>The design of the app is inspired by the interfaces of Prodigy (and therefore Doccano) and Art Tracks.\
+                The mechanism is very simple: the user can create projects by uploading CSV files to the online platform, without any need of installation or computer skills. The CSV format has been chosen as the easiest to manage. In fact a CSV file, being a simple table, can also be created using classic programs such as Excel or Google Sheet.\
+                Once the file is loaded, the user accesses the interface where, one work at a time, reading the text of the provenance, he or she can fill in the appropriate form. The form reflects the data required by the Linked Art data model.</p>\
+                At the moment I have completed the basic logic of the application:\
+                <ul>\
+                <li>Login interface via credentials. Since the application is not yet aimed at the public, access is strictly reserved for our team.</li>\
+                <li>Project creation interface. Through this interface we can create new projects by loading CSV files (following a precise table structure) and added the possibility to remove projects (with a confirmation request to avoid accidents).</li>\
+                <li>Interface Form. It has been started the realization of the working interface where there will be the form to fill in. I tried to meet the needs of users to make the interface as comfortable as possible.</li>\
+                </ul>"
+            }
+        ],
+        "brainstorming":[
+            {
+                "title":"Exibitions",
+                "text":"For the moment I have not included the Exhibitions among the data under analysis and not even the platform provides for the management of the data of the Exhibitions. Basically I have not included them in order not to overload the work of manual annotation of the data. But obviously we can discuss it!"
+            }
+        ],
+        "future":[
+            {
+                "title":"Form",
+                "text":"Next week will be dedicated to the creation of the form template that will be available for the annotation of the provenances. Obviously it will be necessary a careful analysis of the Linked Data Model first."
+            }
+        ]
+    },
+
+
+
+    {
         "title":"",
         "period":["",""],
         "highlights":
