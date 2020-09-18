@@ -73,6 +73,7 @@
                     <div class="container mt-5 mb-5">
 	<div class="row">
 		<div class="col-md-6 offset-md-3">
+            <H5>Weeks: <span class="text-secondary d-inline" id="weeks"></span></H5><H5>Days: <span class="text-secondary d-inline" id="days"></span></H5><H5>Hours: <span class="d-inline text-secondary" id="hours"></span></H5>
 			<h4>Latest News</h4>
 			<ul id="week-container" class="timeline">
                    
@@ -104,10 +105,12 @@
           $.getJSON("data.json", function(json) {
             console.log(json); // this will show the info it in firebug console
         });
-
+        hours = 0
+        days = 0
         for (var i = 0; i < data.length; i++) {
             if (data[i]["title"]){
-
+                hours += 40
+                days += 5
                 num = i + 1
                 var ul = document.getElementById("week-container");
                 var li = document.createElement("li");
@@ -212,6 +215,9 @@
 
             }
         }
+        $("#weeks").append(data.length - 1)
+        $("#days").append(days)
+        $("#hours").append(hours)
 
 
       </script>

@@ -202,6 +202,46 @@ var data = [
 
 
     {
+        "title":"WEEK 5",
+        "period":["14-08-2020","18-08-2020"],
+        "highlights":
+                    [
+                        "Form template creation",
+                        "Provenance Data Platform save system",
+                        "NGA data scraping improvements"
+                    ],
+        "achievements":[
+            {
+                "title":"Provenance Data Platform save system",
+                "text":"Much of the week was dedicated to improving the platform. Of particular technical interest and the data storage system implemented. This system acts in real time after any modification and saves data even in crucial situations such as closing the window or changing pages. In this way you are sure not to lose the work done without the thought of having to save it."
+            },
+            {
+                "title":"Form template creation",
+                "text":"The form to be filled in to analyze Provenance's data has been completed. The form fully reflects the provisions of the Linked Art Data Model. In particular it is possible to add a number of Parties involved in the event and places where these Parties have lived. It is important to note the eventcentrism of the Linked Art Data Model."
+            },
+            {
+                "title":"NGA data scraping improvements",
+                "text":"The data scraping script of the NGA website has been improved. In particular, functions have been added to include bibliography data, engravings and exibitions. In addition, the urls of the images of the paintings are saved."
+            }
+        ],
+        "brainstorming":[
+            {
+                "title":"Exibitions",
+                "text":"Given the event-centric nature of the Linked Art Data Model it could be possible to insert the exibitions among the provenance activities (obviously expressing that they are exibitions) in this way you could reduce the workload by inserting only those exibitons that have had a noteworthy role in the provenance of the object.\
+                <p><b>It is important to clarify well the fact that it is an event centric model.</b></p>"
+            }
+        ],
+        "future":[
+            {
+                "title":"Saving System Complete and new Data",
+                "text":"Next week will be dedicated to the refinement of the saving system and new data will be inserted in the metadata display interface (e.g. exibitions and images). I am also thinking of creating a method to select a Party or Event already described (e.g. Exibitions) so that I don't have to rewrite the data every time."
+            }
+        ]
+    },
+
+
+
+    {
         "title":"",
         "period":["",""],
         "highlights":
