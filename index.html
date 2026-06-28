@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fabio Mariani — Digital Humanist">
+  <title>Fabio Mariani</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --ink: #17211f;
+      --muted: #66736f;
+      --copper: #b76e45;
+      --deep-teal: #123c3a;
+      --line: rgba(23, 33, 31, .14);
+      --shadow: 0 24px 80px rgba(18, 60, 58, .14);
+      --radius: 1.35rem;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, .navbar-brand {
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -.04em;
+    }
+    h5 {
+      color: var(--deep-teal);
+    }
+
+    a { color: var(--copper); }
+    a:hover { color: var(--deep-teal); }
+    .mono { font-family: "IBM Plex Mono", monospace; letter-spacing: -.02em; }
+    .text-muted-custom { color: var(--muted); }
+
+    .navbar {
+      backdrop-filter: blur(18px);
+      background: var(--deep-teal);
+      
+    }
+
+    .navbar-brand { color: white; }
+    .navbar-brand:hover { color: var(--copper); }
+    .nav-link { font-weight: 650; color: white; }
+    .nav-link:hover { color: var(--copper); }
+
+
+    /*.nav-link.active {
+      color: var(--copper) !important;
+      position: relative;
+    }*/
+
+    .navbar .nav-link.active-section {
+      color: var(--copper) !important;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 6rem;
+      position: relative;
+    }
+
+    .display-title {
+      font-size: clamp(3.4rem, 10vw, 8.8rem);
+      line-height: .86;
+      font-weight: 800;
+      letter-spacing: -.075em;
+      color: var(--deep-teal);
+    }
+
+    
+
+    .btn-ink,
+    .btn-outline-ink {
+      --bs-btn-border-color: var(--ink);
+      border-radius: 999px;
+      font-weight: 600;
+      padding: .35rem .85rem;
+      font-size: .85rem;
+    }
+
+    .btn-outline-ink:hover {
+      background: var(--deep-teal);
+      border-color: var(--deep-teal);
+      color: #fff;
+    }
+
+    .btn-ink {
+      background: var(--deep-teal);
+      border-color: var(--deep-teal);
+      color: #fff;
+    }
+
+    .btn-ink:hover {
+      background: var(--deep-teal);
+      border-color: var(--deep-teal);
+      color: #fff;
+    }
+
+   
+
+    section { padding: 2rem 0; position: relative; }
+    .section-kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--copper);
+      font-weight: 800;
+    }
+
+    .glass-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .55);
+      box-shadow: 0 18px 60px rgba(18, 60, 58, .08);
+      height: 100%;
+    }
+
+    .green-card {
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+      background: var(--deep-teal);
+      color: white;
+      
+      height: 100%;
+    }
+
+    
+
+    .portfolio-card { padding: 1.35rem; }
+    .portfolio-card:hover {  box-shadow: var(--shadow); }
+
+    .timeline { position: relative; padding-left: 1.2rem; }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: .25rem;
+      top: .2rem;
+      bottom: .2rem;
+      width: 1px;
+      background: var(--line);
+    }
+    .timeline-item { position: relative; margin-bottom: 1.6rem; padding-left: 1.4rem; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -.05rem;
+      top: .35rem;
+      width: .7rem;
+      height: .7rem;
+      border-radius: 999px;
+      background: var(--copper);
+      box-shadow: 0 0 0 .35rem rgba(183, 110, 69, .15);
+    }
+
+    .publication, .teaching-item {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .publication:last-child, .teaching-item:last-child { border-bottom: 0; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .35rem .65rem;
+      font-size: .8rem;
+      font-weight: 750;
+      color: var(--deep-teal);
+      background: white;
+      margin: .2rem;
+    }
+
+    
+
+    .map-shell {
+      border-radius: calc(var(--radius) + .5rem);
+      background: var(--deep-teal);
+      padding: .75rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, .45);
+    }
+    #conferenceMap {
+      height: min(68vh, 680px);
+      min-height: 460px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .map-caption { color: rgba(255, 255, 255, .72); font-size: .92rem; padding: .4rem; }
+    .leaflet-popup-content-wrapper { border-radius: 1rem; box-shadow: 0 20px 50px rgba(0, 0, 0, .22); }
+    .leaflet-popup-content { margin: 1rem; font-family: "Inter", sans-serif; }
+    .conference-popup-title { font-family: "Space Grotesk", sans-serif; font-size: 1.05rem; font-weight: 750; color: var(--deep-teal); margin-bottom: .25rem; }
+    .conference-popup-meta { font-family: "IBM Plex Mono", monospace; font-size: .78rem; color: var(--copper); margin-bottom: .5rem; }
+
+    .map-shell .btn-outline-ink {
+      border-color: white;
+      background: white;
+      color: var(--deep-teal)
+    }
+
+    .map-shell .btn-outline-ink:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(255,255,255,.6);
+      color: #fff;
+    }
+
+    .map-shell .btn-ink {
+      background: var(--copper);
+      border-color: var(--copper);
+      color: #fff;
+    }
+
+    .map-shell .btn-ink:hover {
+      background: var(--copper);
+      border-color: var(--copper);
+      color: #fff;
+    }
+
+
+    .contact-card a { color: white; text-decoration: none; font-weight: 750; }
+    .contact-card a:hover { color: var(--copper); }
+    footer { border-top: 1px solid var(--line); padding: 2rem 0; color: var(--muted); }
+
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      border-radius: 24px;
+      border-left: 8px solid var(--deep-teal);
+      box-shadow: 0 24px 60px rgba(0,0,0,.12);
+    }
+    
+
+    .logo-plate img {
+      width: 100%;
+      height: 100%;
+    }
+
+    @media (max-width: 991.98px) {
+      .hero { min-height: auto; padding: 8rem 0 4rem; }
+      section { padding: 1rem 0; }
+    }
+
+    @media (max-width: 768px) {
+      #conferenceMap {
+        height: 42vh;
+        min-height: 260px;
+        max-height: 320px;
+      }
+
+      .map-shell {
+        padding: .6rem;
+      }
+
+      .map-caption {
+        font-size: .78rem;
+        line-height: 1.4;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <nav id="mainNav" class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#top">Fabio <span>Mariani</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+          <!--<li class="nav-item"><a class="nav-link" href="#teaching">Teaching</a></li>-->
+          <li class="nav-item"><a class="nav-link" href="#talks">Activities</a></li>
+          <!--<li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>-->
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top" class="hero">
+    <!--<div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-8">
+          <h1 class="display-title mb-4">Fabio<br>Mariani</h1>
+          <p class="section-kicker mb-4">
+            Digital Humanist
+          </p>
+        </div>
+        
+        <div class="col-lg-4 text-center">
+          <div class="logo-plate">
+            <img src="img/mariani_fabio.jpg" alt="Fabio Mariani" class="img-fluid hero-img">
+          </div>
+        </div>
+      </div>
+    </div>-->
+
+    <div class="container">
+      <h1 class="display-title mb-4">Fabio<br>Mariani</h1>
+      <p class="section-kicker mb-4">
+        Digital Humanist
+      </p>
+    </div>
+  </header>
+
+  <main>
+    
+
+    <section id="about">
+      <div class="container">
+        <div class="row g-5 align-items-start">
+
+          <div class="">
+            <p class="section-kicker">About</p>
+            <div class="glass-card mb-4">
+
+              <!--<div class="p-5 green-card">
+                <div class="row g-5 align-items-center">
+                  
+                  <div class="col-lg-8">
+                    <p class="fs-5 mb-4">
+                      Fabio Mariani works at the intersection of Digital Humanities, Computational Linguistics, Natural Language Processing, Semantic Web technologies, and cultural heritage research.
+                    </p>
+
+                    <p class="fs-5 mb-4">
+                      His work focuses on modelling, enriching, and publishing complex knowledge: from historical and museum documentation to bibliographic metadata and environmental datasets.
+                    </p>
+
+                    <div class="d-flex flex-wrap">
+                      <span class="tag">Natural Language Processing</span>
+                      <span class="tag">Semantic Web</span>
+                      <span class="tag">Cultural Heritage Data</span>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 text-center">
+                    <div class="logo-plate">
+                      <img src="img/mariani_fabio.jpg" alt="Fabio Mariani" class="img-fluid hero-img about-img">
+                    </div>
+                  </div>
+
+                </div>
+              </div>-->
+              
+              <!--<div class="p-5 green-card">
+                <p class="fs-5 mb-4">Fabio Mariani works at the intersection of Digital Humanities, Computational Linguistics, Natural Language Processing, Semantic Web technologies, and cultural heritage research.</p>
+                <p class="fs-5 mb-4">His work focuses on modelling, enriching, and publishing complex knowledge: from historical and museum documentation to bibliographic metadata and environmental datasets. He combines human-in-the-loop interfaces, ontologies, RDF pipelines, machine learning, and full-stack development to make research data structured, interoperable, and reusable.
+                </p>
+
+                <div class="d-flex flex-wrap">
+                  <span class="tag">Natural Language Processing</span>
+                  <span class="tag">Semantic Web</span>
+                  <span class="tag">Linked Open Data</span>
+                  <span class="tag">Knowledge Graphs</span>
+                  <span class="tag">Digital Humanities</span>
+                  <span class="tag">Cultural Heritage Data</span>
+                </div>
+
+              </div>-->
+            
+              <div class="p-4 p-lg-5">
+                
+
+                <!--<div class="row g-5">
+                  <div class="col-lg-6">
+                    <p class="section-kicker">Academic Positions</p>
+                    <div class="timeline">
+                      <div class="timeline-item">
+                        <p class="mono text-muted-custom small mb-1">
+                          2025 — present · University of Augsburg, Germany
+                        </p>
+                        <h5 class="mb-2">
+                          Akademischer Rat
+                        </h5>
+                        <p class="text-muted-custom mb-0">
+                          Faculty of Computational Linguistics: Research and teaching in computational linguistics and digital methods.
+                        </p>
+                      </div>
+
+                      <div class="timeline-item">
+                        <p class="mono text-muted-custom small mb-1">
+                          2020 — 2024 · Leuphana University Lüneburg, Germany
+                        </p>
+                        <h5 class="mb-2">
+                          Research Associate
+                        </h5>
+                        <p class="text-muted-custom mb-0">
+                          Faculty of Applied Computer Science: NLP, semantic technologies, data infrastructures, and human-in-the-loop systems.
+                        </p>
+                      </div>
+
+                      <div class="timeline-item">
+                        <p class="mono text-muted-custom small mb-1">
+                          2020 · ISTC-CNR, Rome, Italy
+                        </p>
+                        <h5 class="mb-2">
+                          Data & Ontology Scientist
+                        </h5>
+                        <p class="text-muted-custom mb-0">
+                          Ontologies, RDF pipelines, and environmental knowledge graphs.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <p class="section-kicker">Education</p>
+                    <div class="timeline">
+                      <div class="timeline-item">
+                        <p class="mono text-muted-custom small mb-1">
+                          2020 — 2025 · Leuphana University Lüneburg, Germany
+                        </p>
+                        <h5 class="mb-2">
+                          PhD — Faculty of Applied Computer Science
+                        </h5>
+                        <p class="text-muted-custom mb-0"><b>Thesis:</b> <em><a href="https://opus.bibliothek.uni-augsburg.de/opus4/frontdoor/index/index/docId/130287" target="_blank">Vague, incomplete, subjective, and uncertain information in digital history</a></em></p>
+                        <p class="text-muted-custom mb-0"><b>Final grade:</b> Summa cum laude.</p>
+                      </div>
+
+                      <div class="timeline-item">
+                        <p class="mono text-muted-custom small mb-1">
+                          2017 — 2020 · University of Bologna, Italy
+                        </p>
+                        <h5 class="mb-2">
+                          M.A. in Digital Humanities and Digital Knowledge
+                        </h5>
+                        <p class="text-muted-custom mb-0"><b>Thesis:</b> <em>Development of OpenCitations Meta: Methodology and Implementation</em></p>
+                        <p class="text-muted-custom mb-0"><b>Final grade:</b> 110/110 cum laude.</p>
+                      </div>
+
+                      <div class="timeline-item">
+                        <p class="mono text-muted-custom small mb-1">
+                          2013 — 2016 · University of Bologna, Italy
+                        </p>
+                        <h5 class="mb-2">
+                          B.A. in History
+                        </h5>
+                        <p class="text-muted-custom mb-0"><b>Thesis:</b> <em>...</em></p>
+                        <p class="text-muted-custom mb-0"><b>Final grade:</b> ...</p>
+                      </div>
+                    </div>
+                  </div> 
+                </div>-->
+
+
+                <!--<p class="section-kicker">Education & work</p>-->
+                <div class="timeline">
+
+                  <div class="timeline-item">
+                    <p class="mono text-muted-custom small mb-1">
+                      2025 — present · University of Augsburg, Germany
+                    </p>
+                    <h5 class="mb-2">
+                      Akademischer Rat
+                    </h5>
+                    <p class="text-muted-custom mb-0">
+                      Faculty of Computational Linguistics: Research and teaching in computational linguistics and digital methods.
+                    </p>
+                  </div>
+
+                  <div class="timeline-item">
+                    <p class="mono text-muted-custom small mb-1">
+                      2020 — 2024 · Leuphana University Lüneburg, Germany
+                    </p>
+                    <h5 class="mb-2">
+                      Research Associate
+                    </h5>
+                    <p class="text-muted-custom mb-0">
+                      Faculty of Applied Computer Science: NLP, semantic technologies, data infrastructures, and human-in-the-loop systems.
+                    </p>
+                  </div>
+
+                  <div class="timeline-item">
+                    <p class="mono text-muted-custom small mb-1">
+                      2020 — 2025 · Leuphana University Lüneburg, Germany
+                    </p>
+                    <h5 class="mb-2">
+                      PhD — Faculty of Applied Computer Science
+                    </h5>
+                    <p class="text-muted-custom mb-0"><b>Thesis:</b> <em><a href="https://opus.bibliothek.uni-augsburg.de/opus4/frontdoor/index/index/docId/130287" target="_blank">Vague, incomplete, subjective, and uncertain information in digital history</a></em></p>
+                    <p class="text-muted-custom mb-0"><b>Final grade:</b> Summa cum laude.</p>
+                  </div>
+
+                
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container">
+        <div class="row g-5 align-items-start">
+
+          <div>
+            <p class="section-kicker">Publications</p>
+            <!--<div class="d-flex justify-content-start mb-2">
+                <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=POqsstsAAAAJ&sortby=pubdate" target="_blank" rel="noopener" class="btn btn-sm btn-outline-ink">Visit Google Scholar ↗</a>
+            </div>-->
+
+                          
+            <div class="glass-card px-4 p-lg-5 mb-4">
+              <div class="d-flex justify-content-end">
+                <a class="fw-bold text-decoration-none" href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=POqsstsAAAAJ&sortby=pubdate" target="_blank" rel="noopener">
+                  Visit Google Scholar ↗
+                </a>
+              </div>
+              
+
+              <div class="mb-3 d-flex flex-wrap gap-2" id="publicationTypeFilters">
+                <button class="btn btn-sm btn-ink publication-filter-btn" data-filter="all">All</button>
+              </div>
+
+              <div class="mb-4">
+                <select id="publicationYearFilter" class="form-select form-select-sm" style="max-width: 220px;">
+                  <option value="all">All years</option>
+                </select>
+              </div>
+              
+              <div id="publicationsList"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!--<section id="teaching">
+      <div class="container">
+        <p class="section-kicker">Teaching</p>
+                  
+        <div class="glass-card p-4 p-lg-5">
+          <article class="teaching-item">
+            <h5 class="mb-2">Python fundamentals</h5>
+            <p class="text-muted-custom mb-0">Introductory programming and data-handling skills for digital research workflows.</p>
+          </article>
+          <article class="teaching-item">
+            <h5 class="mb-2">Semantic Web concepts</h5>
+            <p class="text-muted-custom mb-0">Core concepts of RDF, SPARQL, ontologies, and linked data for humanities and institutional datasets.</p>
+          </article>
+          <article class="teaching-item">
+            <h5 class="mb-2">Open Data for public institutions</h5>
+            <p class="text-muted-custom mb-0">Training on data publication, reuse, interoperability, and sustainable knowledge infrastructures.</p>
+          </article>
+        </div>       
+      </div>
+    </section>-->
+
+    <section id="talks">
+      <div class="container">
+        <p class="section-kicker">Activities</p>
+          
+        <div class="map-shell">
+          <div class="m-3 d-flex flex-wrap gap-2">
+            <button class="btn btn-sm btn-ink filter-btn" data-filter="all">All</button>
+
+            <button class="btn btn-sm btn-outline-ink filter-btn" data-filter="Conference">Conferences</button>
+
+            <button class="btn btn-sm btn-outline-ink filter-btn" data-filter="Invited Talk">Invited Talks</button>
+
+            <button class="btn btn-sm btn-outline-ink filter-btn" data-filter="Workshop">Workshops</button>
+          </div>
+          <div class="map-caption mono">Click on the markers to explore conferences, talks and workshops details.</div>
+          <div id="conferenceMap" aria-label="Interactive map of Fabio Mariani's conferences and talks"></div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!--<section id="portfolio">
+      <div class="container">
+        <p class="section-kicker">Portfolio</p>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-3">
+            <article class="glass-card portfolio-card">
+              <h3 class="h4">PROV-A</h3>
+              <p class="text-muted-custom mb-3"><a href="https://prov-a.github.io/">https://prov-a.github.io/</a></p>
+              <p class="text-muted-custom mb-3">PROV-A, Provenance App, bridges the gap between traditional provenance studies and modern digital methods.</p>
+              <span class="tag">Provenance Data</span><span class="tag">Linked Open Data</span><span class="tag">Knowledge Graphs</span>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="glass-card portfolio-card">
+              <h3 class="h4">Statuti Ascoli</h3>
+              <p class="text-muted-custom mb-3"><a href="https://statutiascoli.it/">https://statutiascoli.it/</a></p>
+              <p class="text-muted-custom mb-3">Statuti Ascoli is a digital edition that provides open access to the medieval legal text through interactive tools and semantic navigation.</p>
+              <span class="tag">Digital Edition</span><span class="tag">Medieval Statutes</span><span class="tag">TAG</span>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="glass-card portfolio-card">
+              <h3 class="h4">TITOLO</h3>
+              <p class="text-muted-custom mb-3"><a href="">link</a></p>
+              <p class="text-muted-custom mb-3">Descrizione</p>
+              <span class="tag">TAG</span><span class="tag">TAG</span><span class="tag">TAG</span>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="glass-card portfolio-card">
+              <h3 class="h4">TITOLO</h3>
+              <p class="text-muted-custom mb-3"><a href="">link</a></p>
+              <p class="text-muted-custom mb-3">Descrizione</p>
+              <span class="tag">TAG</span><span class="tag">TAG</span><span class="tag">TAG</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>-->
+
+    <section id="contact">
+      <div class="container">
+        <p class="section-kicker">Contact</p>
+
+        <div class="glass-card green-card contact-card p-4 p-lg-5 mt-0">
+          <div class="d-grid gap-3">
+            <a href="mailto:fabio.mariani555@gmail.com" class="d-flex justify-content-between align-items-center border-bottom pb-3">
+              <span>Email</span><span>fabio.mariani@uni-a.de</span>
+            </a>
+            <a href="https://scholar.google.com/citations?user=POqsstsAAAAJ&hl=en" target="_blank" rel="noopener" class="d-flex justify-content-between align-items-center border-bottom pb-3">
+              <span>Google Scholar</span><span>↗</span>
+            </a>
+            <a href="https://orcid.org/0000-0002-7382-0187" target="_blank" rel="noopener" class="d-flex justify-content-between align-items-center border-bottom pb-3">
+              <span>Orcid</span><span>↗</span>
+            </a>
+            <a href="https://github.com/FabioMariani" target="_blank" rel="noopener" class="d-flex justify-content-between align-items-center border-bottom pb-3">
+              <span>GitHub</span><span>↗</span>
+            </a>
+            <a href="https://www.linkedin.com/in/fabio-mariani-10ab7417a/" target="_blank" rel="noopener" class="d-flex justify-content-between align-items-center">
+              <span>LinkedIn</span><span>↗</span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+      <div>© <span id="year"></span> Fabio Mariani</div>
+      
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const map = L.map('conferenceMap', {
+    scrollWheelZoom: false,
+    worldCopyJump: true
+  }).setView([30, 20], 2);
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  const markerIcon = L.divIcon({
+    className: 'custom-marker',
+    html: `
+      <span style="
+        display:block;
+        width:18px;
+        height:18px;
+        background:#b76e45;
+        border:3px solid #fff;
+        border-radius:50%;
+        box-shadow:0 8px 22px rgba(23,33,31,.28);
+      "></span>
+    `,
+    iconSize: [18, 18],
+    iconAnchor: [9, 9]
+  });
+
+  let allMarkers = [];
+
+  fetch('conferences.json')
+    .then(response => response.json())
+    .then(talks => {
+
+      talks.forEach(talk => {
+        const lat = Number(talk.lat);
+        const lng = Number(talk.lng);
+
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+
+        const marker = L.marker([lat, lng], { icon: markerIcon });
+
+        allMarkers.push({
+          marker: marker,
+          type: talk.type
+        });
+
+        marker.bindPopup(`
+          <div class="conference-popup-title">
+            ${talk.title || ''}
+
+            ${
+              talk.link
+                ? `
+                  <a
+                    href="${talk.link}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open event page"
+                    style="
+                      margin-left:6px;
+                      color:var(--copper);
+                      text-decoration:none;
+                      vertical-align:middle;
+                    "
+                  >
+                    <i class="bi bi-box-arrow-up-right"></i>
+                  </a>
+                `
+                : ''
+            }
+          </div>
+
+          <div style="margin-bottom:.5rem;">
+            ${talk.speakers || ''}
+          </div>
+
+          <div class="conference-popup-meta">
+            ${talk.date || ''} | ${talk.type || ''}
+          </div>
+
+          ${
+            talk.event
+              ? `
+                <div style="margin-bottom:.35rem;">
+                  <strong>Event</strong><br>
+                  ${talk.event}
+                </div>
+              `
+              : ''
+          }
+
+          ${
+            talk.organisers
+              ? `
+                <div style="margin-bottom:.35rem;">
+                  <strong>Organisers</strong><br>
+                  ${talk.organisers}
+                </div>
+              `
+              : ''
+          }
+
+          <div>
+            ${talk.location || ''}
+          </div>
+        `);
+      });
+
+      updateMap('all');
+    })
+    .catch(error => {
+      console.error('Error loading conferences.json:', error);
+    });
+
+  function updateMap(filter) {
+    const visibleBounds = [];
+
+    allMarkers.forEach(item => {
+      const show =
+        filter === 'all' ||
+        item.type === filter;
+
+      if (show) {
+        item.marker.addTo(map);
+
+        const latlng = item.marker.getLatLng();
+        visibleBounds.push([latlng.lat, latlng.lng]);
+      } else {
+        map.removeLayer(item.marker);
+      }
+    });
+
+    if (visibleBounds.length > 1) {
+      map.fitBounds(visibleBounds, {
+        padding: [45, 45]
+      });
+    } else if (visibleBounds.length === 1) {
+      map.setView(visibleBounds[0], 5);
+    }
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('btn-ink');
+        b.classList.add('btn-outline-ink');
+      });
+
+      btn.classList.remove('btn-outline-ink');
+      btn.classList.add('btn-ink');
+
+      updateMap(btn.dataset.filter);
+    });
+  });
+</script>
+
+  <script>
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".navbar .nav-link");
+
+    function activateNavLink() {
+      let currentSection = "";
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 220;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+          currentSection = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active-section");
+
+        if (currentSection && link.getAttribute("href") === "#" + currentSection) {
+          link.classList.add("active-section");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", activateNavLink);
+    window.addEventListener("load", activateNavLink);
+  </script>
+
+  <script>
+    let allPublications = [];
+    let activePublicationType = 'all';
+    let activePublicationYear = 'all';
+
+    fetch('publications.json')
+      .then(response => response.json())
+      .then(publications => {
+        allPublications = publications.sort((a, b) => {
+          const dateA = a.date ? new Date(a.date) : new Date(a.year, 0, 1);
+          const dateB = b.date ? new Date(b.date) : new Date(b.year, 0, 1);
+          return dateB - dateA;
+        });
+
+        buildPublicationFilters(allPublications);
+        renderPublications();
+      })
+      .catch(error => {
+        console.error('Error loading publications.json:', error);
+      });
+
+    function buildPublicationFilters(publications) {
+      const typeContainer = document.getElementById('publicationTypeFilters');
+      const yearSelect = document.getElementById('publicationYearFilter');
+
+      const types = [...new Set(publications.map(pub => pub.type).filter(Boolean))].sort();
+      const years = [...new Set(publications.map(pub => pub.year).filter(Boolean))].sort((a, b) => b - a);
+
+      types.forEach(type => {
+        const button = document.createElement('button');
+        button.className = 'btn btn-sm btn-outline-ink publication-filter-btn';
+        button.dataset.filter = type;
+        button.textContent = type;
+        typeContainer.appendChild(button);
+      });
+
+      years.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+      });
+
+      document.querySelectorAll('.publication-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.publication-filter-btn').forEach(b => {
+            b.classList.remove('btn-ink');
+            b.classList.add('btn-outline-ink');
+          });
+
+          btn.classList.remove('btn-outline-ink');
+          btn.classList.add('btn-ink');
+
+          activePublicationType = btn.dataset.filter;
+          renderPublications();
+        });
+      });
+
+      yearSelect.addEventListener('change', () => {
+        activePublicationYear = yearSelect.value;
+        renderPublications();
+      });
+    }
+
+    function renderPublications() {
+      const container = document.getElementById('publicationsList');
+      container.innerHTML = '';
+
+      const filteredPublications = allPublications.filter(publication => {
+        const matchesType =
+          activePublicationType === 'all' ||
+          publication.type === activePublicationType;
+
+        const matchesYear =
+          activePublicationYear === 'all' ||
+          String(publication.year) === activePublicationYear;
+
+        return matchesType && matchesYear;
+      });
+
+      if (filteredPublications.length === 0) {
+        container.innerHTML = `
+          <p class="text-muted-custom mb-0">
+            No publications found for this filter.
+          </p>
+        `;
+        return;
+      }
+
+      filteredPublications.forEach(publication => {
+        const authors = Array.isArray(publication.authors)
+          ? publication.authors.join(', ')
+          : publication.authors;
+
+        const article = document.createElement('article');
+        article.className = 'publication';
+
+        article.innerHTML = `
+          <p class="mono text-muted-custom small mb-2">
+            ${publication.year || ''}${publication.type ? ' · ' + publication.type : ''}
+          </p>
+
+          <h5 class="mb-2">
+            ${
+              publication.link
+                ? `<a href="${publication.link}" target="_blank" rel="noopener" class="text-decoration-none">
+                    ${publication.title}
+                  </a>`
+                : publication.title
+            }
+          </h5>
+
+          <p class="text-muted-custom mb-1">
+            ${authors || ''}
+          </p>
+
+          ${
+            publication.venue
+              ? `<p class="text-muted-custom mb-0"><em>${publication.venue}</em></p>`
+              : ''
+          }
+        `;
+
+        container.appendChild(article);
+      });
+    }
+  </script>
+  
+</body>
+</html>
